@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: tutorial
 title: "Crear cuenta GBIF y bajar datos"
 description: "Creación de cuenta en GBIF y primera aproximación"
 section: datos
@@ -123,4 +123,4 @@ Inclúyela siempre en tus informes o publicaciones, por ejemplo:
 
 📘 **Autor:** Ricardo Segovia  
 🧩 **Proyecto:** Curso BIODATA-Uruguay — Gestión y modelamiento de datos de biodiversidad  
-📅 **Actualizado:** Octubre 2025  
+📅 **Actualizado:** Octubre 2025

@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: tutorial
 title: "Descargar y limpiar datos de GBIF para múltiples especies"
 description: "Aprende a descargar datos desde GBIF, combinarlos, limpiar coordenadas"
 section: datos

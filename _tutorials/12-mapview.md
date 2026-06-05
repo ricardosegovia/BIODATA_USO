@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: tutorial
 title: "Ver las ocurrencias sobre un mapa"
 description: "Aprende a visualizar las ocurrencias que descargaste del GBIF"
 section: datos

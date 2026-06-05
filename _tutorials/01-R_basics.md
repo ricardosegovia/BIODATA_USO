@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: tutorial
 title: "Básicos de R"
 description: "Recordatorio de los elementos básicos de R."
 section: introduccion

@@ -5,6 +5,7 @@ authors: "Nombre(s) autor(es)"
 date: 2025-10-08
 order: 10
 layout: tutorial
+published: false
 ---
 
 ## Objetivos

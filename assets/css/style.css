@@ -1,274 +1,789 @@
+:root {
+  --bg: #f7f9fb;
+  --paper: #ffffff;
+  --paper-soft: #eef6f8;
+  --ink: #17202a;
+  --muted: #5d6875;
+  --line: #d8e1ea;
+  --line-strong: #b9c7d6;
+  --primary: #1f7a8c;
+  --primary-dark: #135c6b;
+  --accent: #b85c24;
+  --accent-soft: #fff3df;
+  --success: #177245;
+  --code-bg: #f8fbfd;
+  --code-head: #e8f1f5;
+  --code-text: #182331;
+  --shadow: 0 16px 40px rgba(23, 32, 42, 0.08);
+  --radius: 8px;
+  --content-width: 1120px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  line-height: 1.6;
+  min-height: 100vh;
   margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, #ffffff 0, var(--bg) 20rem),
+    var(--bg);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
 }
 
-.site-header, .site-footer {
-  padding: 1rem;
-  max-width: 960px;
+a {
+  color: var(--primary-dark);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.25rem 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 28px rgba(23, 32, 42, 0.08);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -10rem;
+  z-index: 20;
+  padding: 0.55rem 0.8rem;
+  color: #ffffff;
+  background: var(--primary-dark);
+  border-radius: 6px;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(100%, var(--content-width));
   margin: 0 auto;
+  padding: 0.85rem 1rem;
 }
 
-.content {
-  padding: 1rem;
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-nav a {
-  margin-right: .75rem;
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  color: var(--ink);
   text-decoration: none;
 }
 
-h1, h2, h3 {
+.brand-mark {
+  display: grid;
+  flex: 0 0 auto;
+  width: 2.35rem;
+  height: 2.35rem;
+  place-items: center;
+  color: #ffffff;
+  background: var(--primary);
+  border-radius: 50%;
+  font-weight: 800;
+}
+
+.brand-title {
+  display: block;
+  overflow: hidden;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brand-subtitle {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
   line-height: 1.25;
 }
 
-.summary {
-  color: #444;
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
 }
 
-/* ==== Code blocks (Jekyll + Rouge) ==== */
-.content .highlight {
-  background: #f6f8fa;         /* gris suave */
-  border: 1px solid #e5e7eb;    /* borde sutil */
-  border-radius: 8px;
-  padding: 0.85rem 1rem;
-  overflow: auto;
-  margin: 1rem 0;
-}
-.content .highlight pre {
-  background: transparent;
-  margin: 0;
-}
-
-/* tipografía del código */
-.content pre, .content code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.35rem;
+  padding: 0.35rem 0.7rem;
+  color: var(--ink);
+  border: 1px solid transparent;
+  border-radius: 999px;
   font-size: 0.95rem;
-  line-height: 1.5;
+  font-weight: 650;
+  text-decoration: none;
 }
 
-/* inline code `así` */
-.content p code, .content li code {
-  background: #f6f8fa;
-  border: 1px solid #e5e7eb;
-  border-radius: 4px;
-  padding: 0.1rem 0.3rem;
+.nav-link:hover,
+.nav-link.is-active {
+  color: var(--primary-dark);
+  background: var(--paper-soft);
+  border-color: #cae1e7;
 }
 
-/* (opcional) etiqueta con el lenguaje en la esquina */
-.content .highlight { position: relative; }
-.content .highlight pre[class*="language-"]::after {
-  position: absolute;
-  top: 6px; right: 8px;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  color: #6b7280;
-  content: attr(class);
+.content {
+  width: min(100%, var(--content-width));
+  margin: 0 auto;
+  padding: 2.5rem 1rem 4rem;
 }
-/* versiones “bonitas” por lenguaje (sobrescriben el content anterior) */
-.content .highlight pre.language-r::after { content: "R"; }
-.content .highlight pre.language-python::after { content: "PY"; }
-.content .highlight pre.language-bash::after { content: "SH"; }
 
-/* ==== Copy button in code blocks ==== */
-.content .highlight { position: relative; }
-.content .highlight .copy-btn {
-  position: absolute;
-  top: 6px;
-  right: 8px;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.8rem;
-  line-height: 1;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
+.content > h1:first-child,
+.tutorial-index > h1:first-child {
+  max-width: 780px;
+  margin: 0 0 0.85rem;
+  font-size: clamp(2rem, 4vw, 3.7rem);
+  line-height: 1.05;
+}
+
+.content > p {
+  max-width: 760px;
+}
+
+.lead,
+.tutorial-description,
+.summary {
+  max-width: 780px;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+h2 {
+  margin-top: 2.5rem;
+  font-size: 1.55rem;
+}
+
+h3 {
+  margin-top: 1.75rem;
+  font-size: 1.18rem;
+}
+
+hr {
+  height: 1px;
+  margin: 2rem 0;
+  background: var(--line);
+  border: 0;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
   background: #ffffff;
-  cursor: pointer;
-}
-.content .highlight .copy-btn:hover {
-  background: #f3f4f6;
-}
-.content .highlight .copy-btn.copied {
-  background: #e6ffed;
-  border-color: #34d399;
 }
 
-/* Evitar superposición con la etiqueta de lenguaje */
-.content .highlight pre[class*="language-"]::after {
-  left: 8px;
-  right: auto;
+.footer-inner {
+  width: min(100%, var(--content-width));
+  margin: 0 auto;
+  padding: 1.25rem 1rem;
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
-/* ---- Fix: solo contenedor con estilo, no el <pre> ---- */
-.content div.highlight,
-.content figure.highlight {
-  background: #f6f8fa;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 0.85rem 1rem;
-  position: relative;
-  overflow: auto;
-  margin: 1rem 0;
+/* Tutorial index */
+.tutorial-index {
+  display: grid;
+  gap: 2rem;
 }
 
-.content pre.highlight {
-  background: transparent !important;
-  border: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
+.tutorial-section {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
 }
 
-/* Mantener tipografía del código */
-.content div.highlight pre,
-.content figure.highlight pre {
-  background: transparent;
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.section-heading h2 {
   margin: 0;
 }
 
-/* --- Normaliza Rouge interno para evitar bordes/fondos duplicados --- */
-.content .highlight { background: transparent !important; border: 0 !important; padding: 0 !important; }
-.content .highlight pre { background: transparent !important; margin: 0 !important; }
-
-/* --- Estilo SOLO para el contenedor externo marcado por JS --- */
-.content .codebox {
-  background: #f6f8fa;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 0.85rem 1rem;
-  position: relative;
-  overflow: auto;
-  margin: 1rem 0;
+.section-count {
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 650;
+  white-space: nowrap;
 }
 
-/* Botón copiar */
-.content .codebox .copy-btn {
-  position: absolute;
-  top: 6px;
-  right: 8px;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.8rem;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  background: #fff;
-  cursor: pointer;
+.tutorial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.9rem;
 }
-.content .codebox .copy-btn:hover { background: #f3f4f6; }
-.content .codebox .copy-btn.copied { background: #e6ffed; border-color: #34d399; }
 
-/* (opcional) mostrar etiqueta con lenguaje si Rouge añade clases language-* */
-.content .codebox pre[class*="language-"]::after {
-  position: absolute;
-  top: 6px; left: 8px;
-  font-size: 0.75rem;
+.tutorial-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  min-height: 100%;
+  padding: 1rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 24px rgba(23, 32, 42, 0.05);
+  text-decoration: none;
+}
+
+.tutorial-card:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
+}
+
+.tutorial-number {
+  display: grid;
+  width: 2.15rem;
+  height: 2.15rem;
+  place-items: center;
+  color: var(--primary-dark);
+  background: var(--paper-soft);
+  border: 1px solid #cae1e7;
+  border-radius: 50%;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.tutorial-card h3 {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.tutorial-card p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.45;
+}
+
+/* Tutorial pages */
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.breadcrumb a {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.breadcrumb-separator {
+  color: var(--line-strong);
+}
+
+.tutorial-heading {
+  max-width: 820px;
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0;
   text-transform: uppercase;
-  color: #6b7280;
-  content: attr(class);
 }
-.content .codebox pre.language-r::after { content: "R"; }
-.content .codebox pre.language-python::after { content: "PY"; }
-.content .codebox pre.language-bash::after { content: "SH"; }
 
-/* ==== Code blocks: contenedor externo con cuadro gris SIEMPRE ==== */
+.tutorial-heading h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.45rem);
+  line-height: 1.05;
+}
+
+.tutorial-shell {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.tutorial-sidebar {
+  position: sticky;
+  top: 5.7rem;
+}
+
+.toc {
+  padding: 0.95rem;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.toc[hidden] {
+  display: none;
+}
+
+.toc-title {
+  margin: 0 0 0.65rem;
+  color: var(--ink);
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.toc ol {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.toc a {
+  display: block;
+  padding: 0.4rem 0.5rem;
+  color: var(--muted);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.toc a:hover {
+  color: var(--primary-dark);
+  background: var(--paper-soft);
+}
+
+.tutorial-body {
+  min-width: 0;
+  padding: 1.25rem 1.4rem;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(23, 32, 42, 0.05);
+}
+
+.tutorial-body > h1:first-child {
+  display: none;
+}
+
+.tutorial-body h2 {
+  margin-top: 2.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 6.5rem;
+}
+
+.tutorial-body h2:first-child,
+.tutorial-body > h1:first-child + h2 {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.tutorial-body p,
+.tutorial-body li {
+  max-width: 78ch;
+}
+
+.tutorial-body ul,
+.tutorial-body ol {
+  padding-left: 1.35rem;
+}
+
+.tutorial-body li + li {
+  margin-top: 0.3rem;
+}
+
+.tutorial-body blockquote {
+  margin: 1.25rem 0;
+  padding: 0.85rem 1rem;
+  color: #473515;
+  background: var(--accent-soft);
+  border-left: 4px solid #e2a93b;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.tutorial-body blockquote p {
+  margin: 0.25rem 0;
+}
+
+.tutorial-body table {
+  width: 100%;
+  margin: 1.25rem 0;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.tutorial-body th,
+.tutorial-body td {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.tutorial-body th {
+  background: var(--paper-soft);
+}
+
+.tutorial-pager {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+}
+
+.pager-link {
+  display: block;
+  min-height: 100%;
+  padding: 0.95rem 1rem;
+  color: var(--ink);
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+.pager-link:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 24px rgba(23, 32, 42, 0.06);
+}
+
+.pager-link.next {
+  text-align: right;
+}
+
+.pager-label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.pager-title {
+  display: block;
+  margin-top: 0.25rem;
+  font-weight: 800;
+}
+
+/* Inline code and code blocks */
+.content code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.94em;
+}
+
+.content p code,
+.content li code,
+.content table code {
+  padding: 0.08rem 0.32rem;
+  color: #7a3412;
+  background: #fff0da;
+  border: 1px solid #f1d3a7;
+  border-radius: 5px;
+}
+
+.content pre {
+  margin: 1.2rem 0;
+  padding: 1rem;
+  overflow-x: auto;
+  color: var(--code-text);
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  tab-size: 2;
+}
+
+.content .highlighter-rouge > .highlight,
 .content figure.highlight,
 .content div.highlight {
-  background: #f6f8fa !important;   /* gris suave */
-  border: 1px solid #e5e7eb !important;
-  border-radius: 8px !important;
-  padding: 0.85rem 1rem !important;
-  position: relative !important;
-  overflow: auto !important;
-  margin: 1rem 0 !important;
+  margin: 1.25rem 0;
+  padding: 1rem;
+  overflow-x: auto;
+  color: var(--code-text);
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
 }
 
-/* No bordes/fondo en los <pre> internos (evita “doble borde”) */
-.content pre.highlight {
-  background: transparent !important;
-  border: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-/* Tipografía del código */
-.content figure.highlight pre,
-.content div.highlight pre {
-  background: transparent;
+.content .highlight pre,
+.content .code-frame pre {
   margin: 0;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
 }
 
-/* Botón copiar: funciona con o sin .codebox */
-.content figure.highlight .copy-btn,
-.content div.highlight .copy-btn,
-.content .codebox .copy-btn {
-  position: absolute;
-  top: 6px;
-  right: 8px;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.8rem;
-  border: 1px solid #d1d5db;
+.content .code-frame,
+.content div.highlight.code-frame,
+.content figure.highlight.code-frame,
+.content .highlighter-rouge > .highlight.code-frame {
+  position: relative;
+  margin: 1.25rem 0;
+  padding: 0;
+  overflow: hidden;
+  color: var(--code-text);
+  background: var(--code-bg);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 28px rgba(23, 32, 42, 0.06);
+}
+
+.content .code-frame .code-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 2.7rem;
+  padding: 0.45rem 0.55rem 0.45rem 0.8rem;
+  background: var(--code-head);
+  border-bottom: 1px solid var(--line);
+}
+
+.content .code-frame .code-language {
+  overflow: hidden;
+  color: var(--primary-dark);
+  font-size: 0.78rem;
+  font-weight: 850;
+  line-height: 1;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.content .code-frame > pre,
+.content .code-frame .highlight > pre {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.content .code-frame table.rouge-table {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 0;
+}
+
+.content .code-frame table.rouge-table td,
+.content .code-frame table.rouge-table th {
+  padding: 0;
+  border: 0;
+}
+
+.content .code-frame td.rouge-gutter,
+.content .code-frame td.gutter,
+.content .code-frame td.gl {
+  padding-right: 0.8rem;
+  color: #7b8794;
+  user-select: none;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.35rem 0.7rem;
+  color: #ffffff;
+  background: var(--primary-dark);
+  border: 1px solid var(--primary-dark);
   border-radius: 6px;
-  background: #fff;
   cursor: pointer;
-}
-.content figure.highlight .copy-btn:hover,
-.content div.highlight .copy-btn:hover,
-.content .codebox .copy-btn:hover { background: #f3f4f6; }
-
-/* === Cuadro gris robusto para Rouge === */
-/* Aplica al contenedor interno .highlight que está DENTRO del wrapper .highlighter-rouge */
-.content [class^="language-"].highlighter-rouge > .highlight,
-.content .highlighter-rouge > .highlight {
-  background: #f6f8fa !important;     /* gris suave */
-  border: 1px solid #e5e7eb !important;
-  border-radius: 8px !important;
-  padding: 0.85rem 1rem !important;
-  position: relative !important;       /* para el botón Copiar */
-  overflow: auto !important;
-  margin: 1rem 0 !important;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 750;
+  line-height: 1;
 }
 
-/* Evita “doble borde/fondo” en el <pre> interior */
-.content [class^="language-"].highlighter-rouge > .highlight > pre.highlight,
-.content .highlighter-rouge > .highlight > pre.highlight {
-  background: transparent !important;
-  border: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
+.copy-btn:hover {
+  background: var(--primary);
 }
 
-/* Tipografía del código */
-.content .highlighter-rouge pre { background: transparent; margin: 0; }
-
-/* Botón Copiar (funciona con o sin numeración de líneas) */
-.content .highlighter-rouge > .highlight .copy-btn {
-  position: absolute;
-  top: 6px;
-  right: 8px;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.8rem;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  background: #fff;
-  cursor: pointer;
-}
-.content .highlighter-rouge > .highlight .copy-btn:hover { background: #f3f4f6; }
-
-/* === Cuadro gris solo en el contenedor Rouge correcto === */
-.content .highlighter-rouge > .highlight {
-  background: #f6f8fa !important;
-  border: 1px solid #e5e7eb !important;
-  border-radius: 8px !important;
-  padding: 0.85rem 1rem !important;
-  position: relative !important;
-  overflow: auto !important;
-  margin: 1rem 0 !important;
+.copy-btn.copied {
+  background: var(--success);
+  border-color: var(--success);
 }
 
-/* Evita el “doble borde” en el <pre> interno */
-.content .highlighter-rouge > .highlight > pre.highlight {
-  background: transparent !important;
-  border: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
+.copy-btn.copy-error {
+  background: #9f2f2f;
+  border-color: #9f2f2f;
+}
+
+/* Small Rouge palette for readable highlighted code */
+.highlight .c,
+.highlight .cm,
+.highlight .c1 {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.highlight .k,
+.highlight .kd,
+.highlight .kn,
+.highlight .kr {
+  color: #8742a0;
+  font-weight: 700;
+}
+
+.highlight .s,
+.highlight .s1,
+.highlight .s2,
+.highlight .dl {
+  color: #9a4d17;
+}
+
+.highlight .nf,
+.highlight .fm,
+.highlight .nb {
+  color: #0969da;
+}
+
+.highlight .m,
+.highlight .mi,
+.highlight .mf {
+  color: #116329;
+}
+
+@media (max-width: 820px) {
+  body {
+    font-size: 16px;
+  }
+
+  .site-header {
+    position: static;
+  }
+
+  .header-inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .brand-subtitle {
+    display: none;
+  }
+
+  .content {
+    padding-top: 1.5rem;
+  }
+
+  .tutorial-shell {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .tutorial-sidebar {
+    position: static;
+  }
+
+  .toc {
+    padding: 0.75rem;
+  }
+
+  .toc ol {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .tutorial-body {
+    padding: 1rem;
+  }
+
+  .tutorial-pager {
+    grid-template-columns: 1fr;
+  }
+
+  .pager-link.next {
+    text-align: left;
+  }
+}
+
+@media (max-width: 520px) {
+  .content > h1:first-child,
+  .tutorial-index > h1:first-child,
+  .tutorial-heading h1 {
+    font-size: 2rem;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .tutorial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tutorial-card {
+    grid-template-columns: 1fr;
+  }
+
+  .tutorial-number {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .content .code-frame .code-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .copy-btn {
+    width: 100%;
+  }
 }

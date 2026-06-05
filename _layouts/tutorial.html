@@ -1,10 +1,74 @@
 ---
 layout: default
 ---
-<article class="tutorial">
-  <h1>{{ page.title }}</h1>
-  {% if page.authors %}<p><strong>Autores:</strong> {{ page.authors }}</p>{% endif %}
-  {% if page.date %}<p><em>{{ page.date | date: "%Y-%m-%d" }}</em></p>{% endif %}
-  {% if page.summary %}<p class="summary">{{ page.summary }}</p>{% endif %}
-  {{ content }}
+{% assign section_key = page.section | default: "tutorial" %}
+{% assign labels = site.data.tutorial_sections.labels %}
+{% assign section_label = labels[section_key] | default: section_key %}
+{% assign tutorials_sorted = site.tutorials | where_exp: "item", "item.section" | sort: "order" %}
+{% assign previous_candidate = nil %}
+{% assign previous_tutorial = nil %}
+{% assign next_tutorial = nil %}
+{% assign found_current = false %}
+{% for item in tutorials_sorted %}
+  {% if found_current and next_tutorial == nil %}
+    {% assign next_tutorial = item %}
+  {% endif %}
+  {% if item.url == page.url %}
+    {% assign previous_tutorial = previous_candidate %}
+    {% assign found_current = true %}
+  {% endif %}
+  {% unless found_current %}
+    {% assign previous_candidate = item %}
+  {% endunless %}
+{% endfor %}
+
+<article class="tutorial-page">
+  <nav class="breadcrumb" aria-label="Ruta">
+    <a href="{{ '/tutorials/' | relative_url }}">Tutoriales</a>
+    <span class="breadcrumb-separator" aria-hidden="true">/</span>
+    <span>{{ section_label }}</span>
+  </nav>
+
+  <header class="tutorial-heading">
+    <p class="eyebrow">Tutorial {{ page.order }} · {{ section_label }}</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p class="tutorial-description">{{ page.description }}</p>{% endif %}
+    {% if page.authors or page.date %}
+      <p class="summary">
+        {% if page.authors %}<strong>Autores:</strong> {{ page.authors }}{% endif %}
+        {% if page.authors and page.date %} · {% endif %}
+        {% if page.date %}<strong>Actualizado:</strong> {{ page.date | date: "%Y-%m-%d" }}{% endif %}
+      </p>
+    {% endif %}
+  </header>
+
+  <div class="tutorial-shell">
+    <aside class="tutorial-sidebar">
+      <nav class="toc" aria-label="Contenido del tutorial">
+        <p class="toc-title">Contenido</p>
+        <ol data-toc></ol>
+      </nav>
+    </aside>
+
+    <div class="tutorial-body">
+      {{ content }}
+    </div>
+  </div>
+
+  {% if previous_tutorial or next_tutorial %}
+    <nav class="tutorial-pager" aria-label="Tutoriales anterior y siguiente">
+      {% if previous_tutorial %}
+        <a class="pager-link previous" href="{{ previous_tutorial.url | relative_url }}">
+          <span class="pager-label">Anterior</span>
+          <span class="pager-title">{{ previous_tutorial.title }}</span>
+        </a>
+      {% endif %}
+      {% if next_tutorial %}
+        <a class="pager-link next" href="{{ next_tutorial.url | relative_url }}">
+          <span class="pager-label">Siguiente</span>
+          <span class="pager-title">{{ next_tutorial.title }}</span>
+        </a>
+      {% endif %}
+    </nav>
+  {% endif %}
 </article>

@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: tutorial
 title: "Revisar taxonomía de una lista de especies"
 description: "Aprende a revisar taxonomías y visualizar tus datos taxonómicos"
 section: datos
