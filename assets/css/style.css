@@ -222,6 +222,112 @@ hr {
   font-size: 0.92rem;
 }
 
+/* Home and shared cards */
+.home-actions,
+.tutorial-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.35rem 0;
+}
+
+.primary-action,
+.secondary-action,
+.action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.55rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.primary-action,
+.action-link {
+  color: #ffffff;
+  background: var(--primary-dark);
+  border: 1px solid var(--primary-dark);
+}
+
+.primary-action:hover,
+.action-link:hover {
+  color: #ffffff;
+  background: var(--primary);
+}
+
+.secondary-action {
+  color: var(--primary-dark);
+  background: #ffffff;
+  border: 1px solid var(--line-strong);
+}
+
+.secondary-action:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.feature-grid,
+.help-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.9rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.feature-card,
+.help-card {
+  display: block;
+  padding: 1rem;
+  color: var(--ink);
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 24px rgba(23, 32, 42, 0.05);
+}
+
+.feature-card {
+  text-decoration: none;
+}
+
+.feature-card:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow);
+}
+
+.feature-card h3,
+.help-card h2 {
+  margin: 0 0 0.45rem;
+  font-size: 1.08rem;
+}
+
+.feature-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.help-card dl {
+  margin: 0;
+}
+
+.help-card dt {
+  margin-top: 0.85rem;
+  font-weight: 800;
+}
+
+.help-card dt:first-child {
+  margin-top: 0;
+}
+
+.help-card dd {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+}
+
 /* Tutorial index */
 .tutorial-index {
   display: grid;
@@ -343,6 +449,35 @@ hr {
   line-height: 1.05;
 }
 
+.tutorial-progress {
+  max-width: 520px;
+  margin-top: 1.2rem;
+}
+
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 750;
+}
+
+.progress-track {
+  height: 0.55rem;
+  overflow: hidden;
+  background: #dfe8ef;
+  border-radius: 999px;
+}
+
+.progress-track span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: inherit;
+}
+
 .tutorial-shell {
   display: grid;
   grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
@@ -397,6 +532,28 @@ hr {
   background: var(--paper-soft);
 }
 
+.sidebar-help {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.8rem;
+}
+
+.sidebar-help a {
+  display: block;
+  padding: 0.55rem 0.7rem;
+  color: var(--primary-dark);
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.sidebar-help a:hover {
+  border-color: var(--primary);
+}
+
 .tutorial-body {
   min-width: 0;
   padding: 1.25rem 1.4rem;
@@ -449,6 +606,42 @@ hr {
 
 .tutorial-body blockquote p {
   margin: 0.25rem 0;
+}
+
+.callout {
+  margin: 1.25rem 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.callout p:first-child {
+  margin-top: 0;
+}
+
+.callout p:last-child,
+.callout ul:last-child,
+.callout ol:last-child {
+  margin-bottom: 0;
+}
+
+.callout.tip {
+  color: #123c46;
+  background: #eaf7f8;
+  border-color: #9bd3dc;
+}
+
+.callout.expected {
+  color: #173b24;
+  background: #edf8ef;
+  border-color: #90cf9d;
+}
+
+.callout.warning {
+  color: #5d3510;
+  background: var(--accent-soft);
+  border-color: #e4ad54;
 }
 
 .tutorial-body table {
@@ -511,6 +704,87 @@ hr {
   font-weight: 800;
 }
 
+/* Search */
+.search-page {
+  max-width: 860px;
+  margin-top: 1.4rem;
+}
+
+.search-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.search-input {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.65rem 0.8rem;
+  color: var(--ink);
+  background: #ffffff;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  font: inherit;
+}
+
+.search-input:focus {
+  outline: 3px solid rgba(31, 122, 140, 0.18);
+  border-color: var(--primary);
+}
+
+.search-count {
+  margin: 0.8rem 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
+.search-results {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.search-result-card {
+  display: block;
+  padding: 1rem;
+  color: var(--ink);
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+.search-result-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 24px rgba(23, 32, 42, 0.06);
+}
+
+.search-result-card h2 {
+  margin: 0.2rem 0 0.25rem;
+  font-size: 1.12rem;
+}
+
+.search-result-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.result-meta {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.empty-results {
+  padding: 1rem;
+  color: var(--muted);
+  background: #ffffff;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+}
+
 /* Inline code and code blocks */
 .content code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -519,6 +793,8 @@ hr {
 
 .content p code,
 .content li code,
+.content dt code,
+.content dd code,
 .content table code {
   padding: 0.08rem 0.32rem;
   color: #7a3412;
@@ -750,6 +1026,10 @@ hr {
   .pager-link.next {
     text-align: left;
   }
+
+  .sidebar-help {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  }
 }
 
 @media (max-width: 520px) {
@@ -769,6 +1049,11 @@ hr {
     grid-template-columns: 1fr;
   }
 
+  .feature-grid,
+  .help-grid {
+    grid-template-columns: 1fr;
+  }
+
   .tutorial-card {
     grid-template-columns: 1fr;
   }
@@ -784,6 +1069,12 @@ hr {
   }
 
   .copy-btn {
+    width: 100%;
+  }
+
+  .primary-action,
+  .secondary-action,
+  .action-link {
     width: 100%;
   }
 }

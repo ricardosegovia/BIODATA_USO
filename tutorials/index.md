@@ -21,7 +21,7 @@ De lo contrario, deriva las secciones desde los tutoriales.
 
 <div class="tutorial-index">
 {%- for s in sections -%}
-  {% assign items = site.tutorials | where: "section", s | sort: "order" %}
+  {% assign items = site.tutorials | where: "section", s | where_exp: "item", "item.published != false" | sort: "order" %}
   {% if items.size > 0 %}
   {% assign label = labels[s] | default: s %}
   <section class="tutorial-section" aria-labelledby="section-{{ s | slugify }}">

@@ -4,11 +4,13 @@ layout: default
 {% assign section_key = page.section | default: "tutorial" %}
 {% assign labels = site.data.tutorial_sections.labels %}
 {% assign section_label = labels[section_key] | default: section_key %}
-{% assign tutorials_sorted = site.tutorials | where_exp: "item", "item.section" | sort: "order" %}
+{% assign tutorials_sorted = site.tutorials | where_exp: "item", "item.published != false" | sort: "order" %}
+{% assign total_tutorials = tutorials_sorted | size %}
 {% assign previous_candidate = nil %}
 {% assign previous_tutorial = nil %}
 {% assign next_tutorial = nil %}
 {% assign found_current = false %}
+{% assign current_position = 0 %}
 {% for item in tutorials_sorted %}
   {% if found_current and next_tutorial == nil %}
     {% assign next_tutorial = item %}
@@ -16,11 +18,17 @@ layout: default
   {% if item.url == page.url %}
     {% assign previous_tutorial = previous_candidate %}
     {% assign found_current = true %}
+    {% assign current_position = forloop.index %}
   {% endif %}
   {% unless found_current %}
     {% assign previous_candidate = item %}
   {% endunless %}
 {% endfor %}
+{% if total_tutorials > 0 %}
+  {% assign progress_percent = current_position | times: 100 | divided_by: total_tutorials %}
+{% else %}
+  {% assign progress_percent = 0 %}
+{% endif %}
 
 <article class="tutorial-page">
   <nav class="breadcrumb" aria-label="Ruta">
@@ -33,6 +41,25 @@ layout: default
     <p class="eyebrow">Tutorial {{ page.order }} · {{ section_label }}</p>
     <h1>{{ page.title }}</h1>
     {% if page.description %}<p class="tutorial-description">{{ page.description }}</p>{% endif %}
+    {% if current_position > 0 %}
+      <div class="tutorial-progress" aria-label="Progreso del curso">
+        <div class="progress-meta">
+          <span>Tutorial {{ current_position }} de {{ total_tutorials }}</span>
+          <span>{{ progress_percent }}%</span>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <span style="width: {{ progress_percent }}%"></span>
+        </div>
+      </div>
+    {% endif %}
+    {% if page.colab_url or page.script_url or page.data_url or page.complete_code_url %}
+      <div class="tutorial-actions" aria-label="Recursos del tutorial">
+        {% if page.colab_url %}<a class="action-link" href="{{ page.colab_url }}">Abrir en Colab</a>{% endif %}
+        {% if page.script_url %}<a class="action-link" href="{{ page.script_url | relative_url }}">Descargar script R</a>{% endif %}
+        {% if page.data_url %}<a class="action-link" href="{{ page.data_url | relative_url }}">Datos de ejemplo</a>{% endif %}
+        {% if page.complete_code_url %}<a class="action-link" href="{{ page.complete_code_url | relative_url }}">Código completo</a>{% endif %}
+      </div>
+    {% endif %}
     {% if page.authors or page.date %}
       <p class="summary">
         {% if page.authors %}<strong>Autores:</strong> {{ page.authors }}{% endif %}
@@ -48,6 +75,10 @@ layout: default
         <p class="toc-title">Contenido</p>
         <ol data-toc></ol>
       </nav>
+      <div class="sidebar-help">
+        <a href="{{ '/ayuda/' | relative_url }}">Errores frecuentes</a>
+        <a href="{{ '/buscar/' | relative_url }}">Buscar en el curso</a>
+      </div>
     </aside>
 
     <div class="tutorial-body">

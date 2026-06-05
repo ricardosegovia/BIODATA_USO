@@ -21,6 +21,8 @@
       <nav class="site-nav" aria-label="Navegación principal">
         <a class="nav-link{% if page.url == '/' %} is-active{% endif %}" href="{{ '/' | relative_url }}">Inicio</a>
         <a class="nav-link{% if page.url contains '/tutorials/' %} is-active{% endif %}" href="{{ '/tutorials/' | relative_url }}">Tutoriales</a>
+        <a class="nav-link{% if page.url contains '/buscar/' %} is-active{% endif %}" href="{{ '/buscar/' | relative_url }}">Buscar</a>
+        <a class="nav-link{% if page.url contains '/ayuda/' %} is-active{% endif %}" href="{{ '/ayuda/' | relative_url }}">Ayuda</a>
       </nav>
     </div>
   </header>
@@ -35,5 +37,6 @@
     </div>
   </footer>
   <script src="{{ '/assets/js/copy-code.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/search.js' | relative_url }}" defer></script>
 </body>
 </html>
