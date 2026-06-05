@@ -1,0 +1,22 @@
+title: "Curso BIODATA-Uruguay"
+description: "Colección de tutoriales del curso BIODATA-Uruguay"
+url: "https://ricardosegovia.github.io"
+baseurl: "/sence_ieb"   # IMPORTANTE para sitio de proyecto
+theme: minima
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+collections:
+  tutorials:
+    output: true
+    permalink: /tutorials/:name/
+defaults:
+  - scope:
+      path: ""
+      type: tutorials
+    values:
+      layout: tutorial
+      nav: tutorials
+plugins:
+  - jekyll-feed

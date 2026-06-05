@@ -1,0 +1,10 @@
+order:
+  - introduccion
+  - datos
+  - modelado
+  - cambio-climático
+labels:
+  introduccion: "Introducción"
+  datos: "Datos de biodiversidad"
+  modelado: "Modelado"
+  cambio-climático: "Cambio climático"
