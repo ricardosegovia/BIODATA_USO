@@ -35,10 +35,20 @@ library(mapview)
 
 ## 📥 2) Leer el archivo ya limpio
 
-> Usamos el archivo **tab-delimited** (`\t`) que preparaste previamente.
+> Usamos el archivo *.CSV que preparaste previamente.
 
 ```r
-datos <- read_delim("/content/datos/datos_filtrados.csv", delim = "\t", show_col_types = FALSE)
+datos <- read.csv("datos_filtrados.csv")
+head(datos)
+
+# Seleccionamos solo las columnas necesarias para el mapa y sus atributos
+datos <- datos %>%
+  select(any_of(c(
+    "decimalLatitude", "decimalLongitude", "scientificName", "countryCode",
+    "eventDate", "basisOfRecord", "institutionCode", "elevation", "recordedBy",
+    "datasetName"
+  )))
+
 head(datos)
 ```
 
@@ -113,7 +123,7 @@ mapview(chile, alpha.regions = 0.1, layer.name = "Chile") +
 
 | Acción | Resultado |
 |:--|:--|
-| Leer archivo tab-delimited (`read_delim`) | Datos limpios en R |
+| Leer archivo CSV (`read.csv`) | Datos limpios en R |
 | Convertir a `sf` | Puntos espaciales en WGS84 |
 | Base R | Vista rápida y ligera |
 | ggplot2 | Gráfico de alta calidad para informes |
